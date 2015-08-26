@@ -5,6 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Semaphore;
 
+/**
+ * 
+ * 使用信号量来实现一个有界的阻塞容器
+ * 
+ * @author renchunxiao
+ */
 public class BounderHashSet<T> {
 	private final Set<T> set;
 	private final Semaphore semaphore;
@@ -15,7 +21,7 @@ public class BounderHashSet<T> {
 	}
 
 	public boolean add(T t) throws Exception {
-		semaphore.acquire();
+		semaphore.acquire();// 添加元素前获取一个信号量
 		boolean wasAdded = false;
 		try {
 			wasAdded = set.add(t);
@@ -30,7 +36,7 @@ public class BounderHashSet<T> {
 	public boolean remove(Object o) {
 		boolean wasRemoved = set.remove(o);
 		if (wasRemoved) {
-			semaphore.release();
+			semaphore.release();// 删除一个元素，释放一个信号量
 		}
 		return wasRemoved;
 	}
