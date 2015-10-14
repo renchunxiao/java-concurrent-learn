@@ -11,8 +11,8 @@ public class Storage {
 	public void productor(int num) throws Exception {
 		synchronized (list) {
 			while (list.size() + num > SIZE) {
-				System.out
-						.println("【要生产的产品数量】:" + num + " \t【库存量】:" + list.size() + " \t暂时不能执行生产任务!");
+				System.out.println("【要生产的产品数量】:" + num + " \t【库存量】:" + list.size()
+						+ " \t暂时不能执行生产任务!");
 				list.wait();
 			}
 
@@ -28,8 +28,8 @@ public class Storage {
 	public void consumer(int num) throws Exception {
 		synchronized (list) {
 			while (num > list.size()) {
-				System.out
-						.println("【要消费的产品数量】:" + num + " \t【库存量】:" + list.size() + " \t暂时不能执行生产任务!");
+				System.out.println("【要消费的产品数量】:" + num + " \t【库存量】:" + list.size()
+						+ " \t暂时不能执行生产任务!");
 				list.wait();
 			}
 			for (int i = 0; i < num; i++) {
