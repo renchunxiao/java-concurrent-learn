@@ -12,12 +12,20 @@ import java.util.concurrent.TimeUnit;
 public class ScheduledExecutorServiceDemo {
 	public static void main(String[] args) {
 		ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
-		service.scheduleAtFixedRate(new Runnable() {
+		
+		service.schedule(new Runnable() {
 			@Override
 			public void run() {
-				// to do something
 				System.out.println("invoked");
 			}
-		}, 0, 2, TimeUnit.SECONDS);
+		}, 8000, TimeUnit.MILLISECONDS);
+	
+		
+		service.schedule(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("invoked222");
+			}
+		}, 10000, TimeUnit.MILLISECONDS);
 	}
 }
